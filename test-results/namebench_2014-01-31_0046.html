@@ -1,0 +1,503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>namebench: 2014-01-31 00:46:48.142099</title>
+  <style type="text/css">
+    
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #bbb;
+  background-image: -moz-linear-gradient(0% 100% 90deg, #e5e5e5, #666, #e5e5e5 99%);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e5e5e5), to(#bbb), color-stop(.1,#666));
+}
+
+
+td {
+  font-size: x-small;
+}
+
+
+#container {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 985px;
+  background-color: #f5f5f5;
+  padding: 0.5em;
+  padding-top: 1px;
+  border: 2px solid #666;
+  border-radius: .6em;
+  -moz-border-radius: .6em;
+  -webkit-border-radius: .6em;
+}
+
+h1 {
+  color: #00CC33;
+  font-size: 75px;
+  text-shadow: 3px 3px #eee;
+  padding-top: 4px;
+  margin: 0;
+}
+
+h2 {
+  padding-top: 1em;
+  clear:  both;
+  font-size: 1em;
+}
+
+h3 {
+  font-size: 0.8em;
+  padding-top:  0;
+  margin: 0;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+h5.faster {
+  font-size:  30px;
+  font-style: italic;
+  color: #009911;
+  margin: 0;
+  padding-top: 4px;
+}
+
+
+#nsdetails {
+  display: block;
+  background-color:  #C2CFF1;
+  border-radius: .5em;
+  -moz-border-radius: .5em;
+  -webkit-border-radius: .5em;
+  padding-left:  3px;
+  padding-bottom: 3px;
+  padding-right:  3px;
+  margin-left: 0.25em;
+}
+
+table#nstable {
+  width:  100%;
+  border-collapse:  collapse;
+  font-size: small;
+}
+
+#nstable tr {
+  vertical-align:  top;
+}
+
+#nstable td {
+  font-size: small;
+}
+
+#nstable td.name_cell {
+  font-size: x-small;
+}
+
+#nstable td.hostname_cell {
+  font-size: x-small;
+}
+
+
+.ip {
+  margin-left: 1em;
+  font-weight: bold;
+  font-family: monospace;
+  border: 1px solid #999;
+  background-color: #f5f5f5;
+  width: 10em;
+  padding: 1px;
+  color: #000;
+}
+
+ul.warnings {
+  padding:  0;
+  margin:  0;
+  margin-left: 0.em;
+  list-style-position:  inside;
+}
+.warnings li {
+}
+#nstable td {
+  padding:  2px;
+  border-right:  1px solid #C2CFF1;
+}
+
+.even {
+  background-color: #fff
+}
+.odd {
+  background-color: #ebeff9;
+}
+
+.unhealthy_host {
+    background-color: #FFD6D8;
+    border-bottom: 1px solid #990000;
+    border-top: 1px solid #990000;
+}
+
+.primary_row {
+  font-weight: bold;
+  background-color: #FFFFEE;
+  border-top: 1px solid #EEEE00;
+  border-bottom: 1px solid #EEEE00;
+}
+
+.disabled {
+  background-color:  #333;
+  border-bottom: 1px solid #666;
+  color: #fff;
+}
+
+.disabled A { 
+  color: #fff;
+}
+
+.disabled A:visited {
+  color: #e5e5e5;
+}
+
+.greybox {
+  border:  1px solid #999;
+  border-radius: .5em;
+  -moz-border-radius: .5em;
+  -webkit-border-radius: .5em;
+  padding:  1em;
+  height:  11em;
+  background-color:  #fff;
+}
+
+#big_summary {
+  display: inline-table;
+  float:  left;
+  text-align:  center;
+  width: 24em;
+}
+
+#recommended_config {
+  float: right;
+  display:  inline-table;
+}
+
+#recommended_config table {
+  margin-top: 1em;
+}
+
+#recommended_config td {
+  font-size: medium;
+}
+
+.rec_name {
+  margin-left:  8px;
+  display:  inline;
+  color:  #999;
+}
+
+.section {
+  margin-left: 0.25em;
+  padding: 1em;
+  background-color:  #fff;
+  max-width: 910px;
+}
+
+.config {
+  background-color:  #fff;
+}
+.configtable {
+  font-size: 10px;
+}
+
+.configtable tr {
+  border:  9px solid #f00;
+}
+
+#nstable thead td {
+  font-weight:  bold;
+  font-size: x-small;
+}
+
+h2:before {
+  color:  #555;
+  content:  '\25BA';
+  padding-right:  0.25em;
+}
+
+
+input[type=text] {
+  color: #000;
+}
+
+.normal .error_count {
+  background-color: #900;
+  color: #fff;
+}
+
+.version {
+  text-align: right;
+  font-size: x-small;
+  color: #ccc;
+  clear: both;
+}
+
+/* links with tooltips */
+a.info {
+    position:relative;
+    z-index:24;
+    color: #000;
+    text-decoration:none
+}
+.disabled a.info {
+    color: #fff;
+}
+
+a.info:hover {z-index:25; }
+a.info span {display: none}
+a.info:hover span {
+    display:block;
+    position:absolute;
+    top:2em; left:2em; width:15em;
+    border:1px solid #0cf;
+    background-color:#cff; color:#000;
+    text-align: center
+}
+
+#notice {
+  font-size: small;
+  text-align: center;
+  background-color: #ffa;
+  border: 1px solid #cc7;
+}
+  </style>
+</head>
+<body>
+
+<div id="container">
+
+<div class="version">namebench 1.5-DEVEL</div>
+
+
+<div id="big_summary" class="greybox">
+	<h4><strong>BIND (1)</strong> is</h4>
+
+	<h1>Fastest</h1>
+	<h4></h4>
+
+</div>
+
+<div id="recommended_config" class="greybox">
+	<h4>Recommended configuration (fastest + nearest)</h4>
+	<table>
+	
+	<tr>
+	  <td>Primary Server</td>
+    <td><div class="ip">162.208.22.26</div></td><td class="rec_name">BIND (1)</td>
+	</tr>
+
+	<tr>
+	  <td>Secondary Server</td>
+    <td><div class="ip">162.208.22.27</div></td><td class="rec_name">dnsmasq (1)</td>
+	</tr>
+
+	<tr>
+	  <td>Tertiary Server</td>
+    <td><div class="ip">8.8.8.8</div></td><td class="rec_name">Google Public DNS</td>
+	</tr>
+
+  </table>
+</div>
+
+
+<h2>Tested DNS Servers</h2>
+
+<div id="nsdetails">
+<table id="nstable">
+<thead>
+<tr>
+  <td nowrap="nowrap">IP</td>
+  <td>Descr.</td>
+  <td nowrap="nowrap">Hostname</td>
+  <td nowrap="nowrap">Avg (ms)</td>
+  <td nowrap="nowrap">Diff</td>
+	<td nowrap="nowrap">Min</td>
+	<td nowrap="nowrap">Max</td>
+  <td nowrap="nowrap">TO</td>
+  <td nowrap="nowrap">NX</td>
+  <td>Notes</td>
+</tr>
+</thead>
+
+
+<tr class="normal odd ">
+
+  <td class="ip_cell"><a href="http://www.google.com/search?q=162.208.22.26" class="info">162.208.22.26<span>9.9.4-P1</span></td>
+  <td class="name_cell">BIND (1)</td>
+  <td class="hostname_cell"><a href="http://www.google.com/search?q=spare-iad-110-ru26.btrll.com" class="info">spare-iad-110-ru26.btrll.com<span>spare-iad-110-ru26.btrll.com </span></a></td>
+  <td>42.12</td>
+  <td></td>
+  <td>1.3</td>
+  <td>3250.0</td>
+  <td class="error_count">7</td>
+  <td>710</td>
+  <td class="notes_cell">
+  
+    <ul class="warnings">
+      
+      <li>www.paypal.com.: Timeout</li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">google.com appears incorrect: 173.194.74.113, 173.194.74.101, 173.194.74.138, 173.194.74.139, 173.194.74.100, 173.194.74.102</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.facebook.com appears incorrect: star.c10r.facebook.com</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.google.com is hijacked: 173.194.74.99, 173.194.74.147, 173.194.74.106, 173.194.74.104, 173.194.74.105, 173.194.74.103</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">twitter.com appears incorrect: 199.16.156.198, 199.16.156.6, 199.16.156.70</a></li>
+      
+	</ul>
+  
+  </td>
+</tr>
+
+<tr class="normal even">
+
+  <td class="ip_cell"><a href="http://www.google.com/search?q=162.208.22.27" class="info">162.208.22.27<span>dnsmasq-2.59</span></td>
+  <td class="name_cell">dnsmasq (1)</td>
+  <td class="hostname_cell"><a href="http://www.google.com/search?q=spare-iad-110-ru27.btrll.com" class="info">spare-iad-110-ru27.btrll.com<span>ops-v01-21b.btrll.com ops-v01-21a.btrll.com </span></a></td>
+  <td>45.73</td>
+  <td>-7.9%</td>
+  <td>0.8</td>
+  <td>3250.0</td>
+  <td class="error_count">5</td>
+  <td>724</td>
+  <td class="notes_cell">
+  
+    <ul class="warnings">
+      
+      <li>www.paypal.com.: Timeout</li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">google.com appears incorrect: 173.194.74.100, 173.194.74.138, 173.194.74.102, 173.194.74.139, 173.194.74.113, 173.194.74.101</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.facebook.com appears incorrect: star.c10r.facebook.com</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.google.com is hijacked: 173.194.74.103, 173.194.74.104, 173.194.74.147, 173.194.74.99, 173.194.74.105, 173.194.74.106</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">twitter.com appears incorrect: 199.16.156.102, 199.16.156.198, 199.16.156.38</a></li>
+      
+	</ul>
+  
+  </td>
+</tr>
+
+<tr class="normal odd ">
+
+  <td class="ip_cell"><a href="http://www.google.com/search?q=8.8.8.8" class="info">8.8.8.8</td>
+  <td class="name_cell">Google Public DNS</td>
+  <td class="hostname_cell"><a href="http://www.google.com/search?q=google-public-dns-a.google.com" class="info">google-public-dns-a.google.com<span>74.125.178.19 74.125.19.215 74.125.19.208 74.125.177.17 </span></a></td>
+  <td>83.15</td>
+  <td>-49.3%</td>
+  <td>15.7</td>
+  <td>3789.5</td>
+  <td class="error_count">260</td>
+  <td>700</td>
+  <td class="notes_cell">
+  
+    <ul class="warnings">
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.google.com is hijacked: 173.194.68.105, 173.194.68.103, 173.194.68.104, 173.194.68.147, 173.194.68.99, 173.194.68.106</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">google.com appears incorrect: 173.194.68.138, 173.194.68.113, 173.194.68.102, 173.194.68.139, 173.194.68.101, 173.194.68.100</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.facebook.com appears incorrect: star.c10r.facebook.com</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">www.paypal.com is hijacked: www.paypal.com.akadns.net</a></li>
+      
+      <li><a href="http://code.google.com/p/namebench/wiki/FAQ#What_does_"Incorrect_result_for..."_mean?">twitter.com appears incorrect: 199.16.156.38, 199.16.156.6, 199.16.156.198</a></li>
+      
+	</ul>
+  
+  </td>
+</tr>
+
+</table>
+</div>
+
+
+<h2>Graphs</h2>
+
+<div id="graphs" class="section">
+<h2>Mean Response Duration</h2>
+<img src="http://chart.apis.google.com/chart?chxt=y%2Cx%2Cx&chd=e%3A-bwbhJ%2CG1N7cV%2CG1NvVJ%2CI3Lpbr%2CHTLMcf%2CHaJMbq%2CI0IqbN%2CNJMhTJ%2CIrLgaT%2CH-JShz&chxp=0%7C2%2C85&chxr=1%2C0%2C195%7C2%2C-9.75%2C204.75&chxtc=1%2C-720&chco=4684ee%2C00248e%2C00002e%2C000000%2C000000%2C000000%2C000000%2C000000%2C000000%2C000000&chbh=a&chs=720x415&cht=bhg&chxl=0%3A%7CGoogle%20Public%20DNS%7Cdnsmasq%20%281%29%7CBIND%20%281%29%7C1%3A%7C0%7C20%7C40%7C60%7C80%7C100%7C120%7C140%7C160%7C180%7C195%7C2%3A%7CDuration%20in%20ms.&chdl=Run%201%7CRun%202%7CRun%203%7CRun%204%7CRun%205%7CRun%206%7CRun%207%7CRun%208%7CRun%209%7CRun%2010" alt="Mean Duration Graph" />
+
+<h3>Fastest Individual Response Duration</h3>
+<img src="http://chart.apis.google.com/chart?chxt=y%2Cx%2Cx&chd=e%3ACdECyM&chxp=0%7C2%2C9&chxr=1%2C0%2C20%7C2%2C-1.0%2C21.0&chxtc=1%2C-720&chco=0000ff&chbh=a&chs=720x91&cht=bhg&chxl=0%3A%7CGoogle%20Public%20DNS%7CBIND%20%281%29%7Cdnsmasq%20%281%29%7C1%3A%7C0%7C3%7C6%7C9%7C12%7C15%7C18%7C20%7C2%3A%7CDuration%20in%20ms." alt="Fastest Response Graph" />
+
+<h3>Response Distribution Chart (First 200ms)</h3>
+
+<img src="http://chart.apis.google.com/chart?cht=lxy&chs=720x415&chxt=x,y&chg=10,20&chxr=0,0,200|1,0,100&chd=t:0,1,2,3,4,4,5,6,7,7,8,9,10,12,14,17,23,46,120|0,0,6,14,23,31,39,46,52,58,62,66,72,77,81,85,89,92,96|0,8,9,10,11,12,12,13,14,15,15,16,17,18,20,22,26,33,86,173|0,0,9,16,23,31,37,44,49,54,59,63,67,72,76,81,85,89,92,96|0,0,1,2,3,3,4,5,6,6,7,8,9,10,12,14,18,28,66,125|0,0,4,12,19,27,35,42,49,54,59,64,67,73,77,81,85,89,92,96&chco=ff9900,1a00ff,ff00e6&chxt=x,y,x,y&chxl=2:||Duration+in+ms||3:||%25|&chdl=BIND+%281%29|Google+Public+DNS|dnsmasq+%281%29" alt="Response Distribution Graph (first 200ms)" />
+
+<h3>Response Distribution Chart (Full)</h3>
+
+<img src="http://chart.apis.google.com/chart?cht=lxy&chs=720x415&chxt=x,y&chg=10,20&chxr=0,0,3250|1,0,100&chd=t:0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,3,7,30,100|0,0,6,14,23,31,39,46,52,58,62,66,72,77,81,85,89,92,96,100,100|0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,5,11,44,117|0,0,9,16,23,31,37,44,49,54,59,63,67,72,76,81,85,89,92,96,99,100|0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,4,8,21,100|0,0,4,12,19,27,35,42,49,54,59,64,67,73,77,81,85,89,92,96,99,100&chco=ff9900,1a00ff,ff00e6&chxt=x,y,x,y&chxl=2:||Duration+in+ms||3:||%25|&chdl=BIND+%281%29|Google+Public+DNS|dnsmasq+%281%29" alt="Response Distribution Graph (full)" />
+</div>
+
+
+<h2>Query Details</h2>
+
+<div id="details" class="section">
+View the details in <a href="namebench_2014-01-31_0046.csv">Comma Separated Values (csv)</a> format.
+</div>
+
+
+
+<h2>Configuration</h2>
+
+
+<div id="config" class="section">
+<table id="configtable">
+	<thead><tr><td>Name</td><td>Value</td></tr></thead>
+	
+	  <tr><td>benchmark_thread_count</td><td>150</td></tr>
+	
+	  <tr><td>distance</td><td>1250</td></tr>
+	
+	  <tr><td>health_thread_count</td><td>30</td></tr>
+	
+	  <tr><td>health_timeout</td><td>2.0</td></tr>
+	
+	  <tr><td>hide_results</td><td>0</td></tr>
+	
+	  <tr><td>input_source</td><td>alexa</td></tr>
+	
+	  <tr><td>max_servers_to_check</td><td>350</td></tr>
+	
+	  <tr><td>num_servers</td><td>11</td></tr>
+	
+	  <tr><td>overload_distance</td><td>250</td></tr>
+	
+	  <tr><td>ping_timeout</td><td>0.5</td></tr>
+	
+	  <tr><td>query_count</td><td>6000</td></tr>
+	
+	  <tr><td>run_count</td><td>10</td></tr>
+	
+	  <tr><td>select_mode</td><td>automatic</td></tr>
+	
+	  <tr><td>server_list</td><td>config/servers.csv</td></tr>
+	
+	  <tr><td>skip_health_checks</td><td>False</td></tr>
+	
+	  <tr><td>template</td><td>html</td></tr>
+	
+	  <tr><td>timeout</td><td>3.25</td></tr>
+	
+	  <tr><td>upload_results</td><td>0</td></tr>
+	
+	  <tr><td>version</td><td>1.5-DEVEL</td></tr>
+	
+</table>
+</div>
+
+</div>
+</body>
+</html>
