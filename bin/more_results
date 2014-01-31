@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cd /tmp
+
+FILES=`ls namebench*`
+CSV=`ls namebench*csv`
+echo FILES=$FILES
+echo CSV=$CSV
+
+cd /home/chicks/Documents/git/dns-cache-performance/test-results
+
+mv /tmp/namebench* .
+dos2unix $CSV
+git add $FILES
+git commit
