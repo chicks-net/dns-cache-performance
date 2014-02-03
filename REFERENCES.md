@@ -1,5 +1,6 @@
 General
 * https://developers.google.com/speed/public-dns/docs/performance discusses the topic from the web browser perspective and includes practical suggestions for improving performance
+* http://opentodo.net/2012/09/monitoring-dns-queries-with-bindgraph/ shows one way to monitor BIND performance 
 
 Tools
 
